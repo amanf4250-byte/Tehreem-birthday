@@ -4,584 +4,1122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Story of Thehreem</title>
 
-<title>The Story of Thehreem ✦</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Parisienne&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Parisienne&display=swap" rel="stylesheet">
 
 <style>
-
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html{
-    scroll-behavior:smooth;
+  scroll-behavior:smooth;
 }
 
 body{
-    background:#f7edf1;
-    color:#4c3944;
-    font-family:"Cormorant Garamond",serif;
-    overflow-x:hidden;
+  background:#f8edf2;
+  color:#5b4657;
+  font-family:'Cormorant Garamond',serif;
+  overflow-x:hidden;
 }
-
-/* COLORS
-   dusty rose: #c993a8
-   lavender: #b7a8c9
-   cream: #fffaf5
-   champagne: #d5b978
-   plum: #654c5e
-*/
-
 
 /* ---------- INTRO ---------- */
 
 .intro{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-
-    background:
-        radial-gradient(circle at 50% 40%,#d8b9ca,#9f829d 35%,#604d60 100%);
-
-    transition:1s ease;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:
+    radial-gradient(circle at 50% 40%,#ead6df 0%,#d6b7c7 45%,#a987a1 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  transition:opacity 1.2s ease,visibility 1.2s ease;
 }
 
 .intro.hide{
-    opacity:0;
-    pointer-events:none;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
 }
 
-.intro-box{
-    width:min(700px,90%);
-    padding:40px;
-    color:white;
+.intro-content{
+  padding:25px;
+  animation:introIn 1.5s ease forwards;
 }
 
-.intro-small{
-    letter-spacing:5px;
-    text-transform:uppercase;
-    font-size:13px;
-    margin-bottom:25px;
-    opacity:.8;
+.small-title{
+  letter-spacing:5px;
+  text-transform:uppercase;
+  font-size:13px;
+  color:#fffafc;
+  margin-bottom:18px;
 }
 
 .intro h1{
-    font-family:"Playfair Display",serif;
-    font-weight:400;
-    font-size:clamp(45px,8vw,85px);
-    line-height:1.05;
+  font-family:'Parisienne',cursive;
+  color:white;
+  font-size:clamp(55px,11vw,110px);
+  font-weight:400;
+  text-shadow:0 5px 25px rgba(70,40,65,.25);
 }
 
 .intro p{
-    margin:25px auto 40px;
-    max-width:550px;
-    font-size:21px;
-    font-style:italic;
-    opacity:.9;
+  color:#fff8fb;
+  font-size:20px;
+  margin:10px 0 30px;
 }
 
 .open-btn{
-    padding:15px 32px;
-    border:1px solid rgba(255,255,255,.7);
-    background:rgba(255,255,255,.12);
-    color:white;
-    font-family:inherit;
-    font-size:16px;
-    letter-spacing:3px;
-    cursor:pointer;
-    transition:.3s;
+  border:1px solid rgba(255,255,255,.7);
+  background:rgba(255,255,255,.13);
+  color:white;
+  padding:15px 38px;
+  border-radius:50px;
+  font-family:'Playfair Display',serif;
+  letter-spacing:3px;
+  cursor:pointer;
+  backdrop-filter:blur(8px);
+  transition:.4s;
 }
 
 .open-btn:hover{
-    background:#fffaf5;
-    color:#654c5e;
-    transform:translateY(-3px);
+  background:white;
+  color:#76576d;
+  transform:translateY(-4px);
+  box-shadow:0 15px 30px rgba(75,45,65,.2);
 }
 
-
-/* ---------- FLOATING PETALS ---------- */
-
-.petal{
-    position:fixed;
-    top:-30px;
-    z-index:1;
-    pointer-events:none;
-    font-size:18px;
-    opacity:.45;
-    animation:fall linear infinite;
+@keyframes introIn{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
-@keyframes fall{
+/* ---------- PARTICLES ---------- */
 
-    0%{
-        transform:translateY(-40px) rotate(0deg);
-    }
-
-    100%{
-        transform:translateY(110vh) rotate(360deg);
-    }
-
+.particle{
+  position:fixed;
+  width:4px;
+  height:4px;
+  background:#d5b978;
+  border-radius:50%;
+  opacity:.45;
+  pointer-events:none;
+  animation:float 8s infinite ease-in-out;
+  z-index:1;
 }
 
+@keyframes float{
+  0%,100%{transform:translateY(0) scale(1);opacity:.25}
+  50%{transform:translateY(-80px) scale(1.5);opacity:.7}
+}
+
+/* ---------- MAIN ---------- */
+
+main{
+  position:relative;
+  z-index:2;
+}
+
+.page{
+  min-height:100vh;
+  padding:100px 8%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.paper{
+  width:min(900px,100%);
+  background:rgba(255,250,247,.84);
+  border:1px solid rgba(174,133,157,.3);
+  box-shadow:
+    0 25px 80px rgba(91,65,84,.12),
+    inset 0 0 70px rgba(211,184,197,.15);
+  padding:70px clamp(25px,7vw,80px);
+  position:relative;
+}
+
+.paper:before,
+.paper:after{
+  content:"";
+  position:absolute;
+  width:70px;
+  height:70px;
+  border-color:#d5b978;
+  opacity:.55;
+}
+
+.paper:before{
+  top:20px;
+  left:20px;
+  border-top:1px solid;
+  border-left:1px solid;
+}
+
+.paper:after{
+  right:20px;
+  bottom:20px;
+  border-right:1px solid;
+  border-bottom:1px solid;
+}
+
+.chapter{
+  text-align:center;
+  color:#a47791;
+  letter-spacing:5px;
+  font-size:13px;
+  text-transform:uppercase;
+  margin-bottom:25px;
+}
+
+h2{
+  font-family:'Playfair Display',serif;
+  font-weight:500;
+  color:#624d60;
+  font-size:clamp(32px,6vw,58px);
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.story{
+  font-size:21px;
+  line-height:1.9;
+  text-align:center;
+  color:#705c6c;
+}
+
+.dropcap:first-letter{
+  font-size:70px;
+  float:left;
+  line-height:.7;
+  padding-right:8px;
+  color:#b77f9b;
+  font-family:'Playfair Display',serif;
+}
 
 /* ---------- HERO ---------- */
 
 .hero{
-    min-height:100vh;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    padding:30px;
-
-    background:
-        radial-gradient(circle at 20% 20%,rgba(201,147,168,.28),transparent 30%),
-        radial-gradient(circle at 80% 70%,rgba(183,168,201,.35),transparent 35%),
-        #f7edf1;
-
-    position:relative;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 50% 50%,rgba(255,255,255,.8),transparent 50%),
+    linear-gradient(135deg,#d9bfd0,#f7e8ee,#ddd2e9);
+  text-align:center;
+  flex-direction:column;
 }
 
-.hero-content{
-    text-align:center;
-    max-width:900px;
-    position:relative;
-    z-index:3;
-}
-
-.ornament{
-    color:#c29f58;
-    font-size:28px;
-    letter-spacing:10px;
+.hero .eyebrow{
+  letter-spacing:7px;
+  text-transform:uppercase;
+  color:#856478;
+  font-size:13px;
+  margin-bottom:20px;
 }
 
 .hero h1{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(55px,10vw,110px);
-    font-weight:400;
-    color:#654c5e;
-    margin:20px 0 5px;
+  font-family:'Parisienne',cursive;
+  font-size:clamp(70px,13vw,150px);
+  font-weight:400;
+  color:#72566c;
+  line-height:1;
+  text-shadow:0 10px 30px rgba(95,65,85,.12);
 }
 
-.hero h2{
-    font-family:"Parisienne",cursive;
-    color:#bd819b;
-    font-size:clamp(50px,8vw,80px);
-    font-weight:400;
-}
-
-.hero-line{
-    width:100px;
-    height:1px;
-    background:#d5b978;
-    margin:30px auto;
-}
-
-.hero p{
-    font-size:21px;
-    color:#806c79;
-    font-style:italic;
+.hero .subtitle{
+  font-family:'Playfair Display',serif;
+  font-size:18px;
+  letter-spacing:4px;
+  color:#92738a;
+  margin-top:20px;
 }
 
 .scroll{
-    margin-top:60px;
-    font-size:13px;
-    letter-spacing:4px;
-    color:#a08391;
-    animation:bounce 1.8s infinite;
+  position:absolute;
+  bottom:35px;
+  font-size:12px;
+  letter-spacing:4px;
+  color:#8d6c83;
+  animation:bounce 2s infinite;
 }
 
 @keyframes bounce{
-    50%{
-        transform:translateY(8px);
-    }
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(10px)}
 }
 
+/* ---------- BOOK ---------- */
 
-/* ---------- NOVEL PAGE ---------- */
-
-.page{
-    min-height:100vh;
-    padding:110px 20px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    position:relative;
+.book-wrap{
+  perspective:1200px;
+  display:flex;
+  justify-content:center;
+  margin:30px 0 50px;
 }
 
-.paper{
-    width:min(850px,94vw);
-
-    padding:80px 70px;
-
-    background:
-        linear-gradient(90deg,
-        rgba(120,80,100,.04) 1px,
-        transparent 1px),
-        #fffaf5;
-
-    background-size:45px 100%;
-
-    border:1px solid rgba(190,145,165,.4);
-
-    box-shadow:
-        0 30px 80px rgba(101,76,94,.18),
-        inset 0 0 60px rgba(205,180,150,.12);
-
-    position:relative;
-
-    transition:.5s;
+.book{
+  width:min(360px,80vw);
+  height:500px;
+  position:relative;
+  transform-style:preserve-3d;
 }
 
-.paper:hover{
-    transform:translateY(-5px);
+.cover{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,#a77992,#795d78);
+  border-radius:4px 15px 15px 4px;
+  box-shadow:15px 20px 45px rgba(76,48,67,.3);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  transition:1.5s cubic-bezier(.2,.8,.2,1);
+  transform-origin:left;
+  z-index:5;
+  backface-visibility:hidden;
 }
 
-.paper:before{
-    content:"";
-    position:absolute;
-    inset:18px;
-    border:1px solid rgba(194,159,88,.35);
-    pointer-events:none;
+.book.open .cover{
+  transform:rotateY(-145deg);
 }
 
-.chapter{
-    text-align:center;
-    position:relative;
-    z-index:2;
+.cover-border{
+  position:absolute;
+  inset:18px;
+  border:1px solid rgba(255,255,255,.55);
 }
 
-.chapter-number{
-    color:#bd819b;
-    font-size:13px;
-    letter-spacing:5px;
-    text-transform:uppercase;
-    margin-bottom:20px;
+.cover small{
+  letter-spacing:5px;
+  font-size:12px;
 }
 
-.chapter h2{
-    font-family:"Playfair Display",serif;
-    font-weight:400;
-    color:#654c5e;
-    font-size:clamp(35px,6vw,55px);
-    margin-bottom:30px;
+.cover h3{
+  font-family:'Parisienne',cursive;
+  font-size:60px;
+  font-weight:400;
+  margin:20px 0;
 }
 
-.chapter p{
-    max-width:650px;
-    margin:auto;
-
-    font-size:21px;
-    line-height:1.75;
-
-    color:#695866;
+.cover span{
+  font-size:24px;
+  color:#f1d999;
 }
 
-.dropcap:first-letter{
-    font-size:70px;
-    float:left;
-    line-height:.7;
-    padding-right:8px;
-    color:#bd819b;
+.book-page{
+  position:absolute;
+  inset:5px;
+  background:#fffaf6;
+  padding:45px 30px;
+  text-align:center;
+  box-shadow:inset 0 0 35px rgba(100,70,85,.08);
 }
+
+.book-page h4{
+  font-family:'Playfair Display',serif;
+  font-size:25px;
+  color:#76566c;
+  margin-bottom:20px;
+}
+
+.book-page p{
+  font-size:18px;
+  line-height:1.8;
+}
+
+/* ---------- QUOTE ---------- */
 
 .quote{
-    max-width:600px;
-    margin:40px auto 0;
-
-    padding:25px;
-
-    border-left:2px solid #d5b978;
-
-    background:rgba(201,147,168,.07);
-
-    color:#806c79;
-
-    font-size:22px;
-    font-style:italic;
+  text-align:center;
+  padding:40px 10px;
 }
 
-
-/* ---------- CHAPTER CARDS ---------- */
-
-.dark-page{
-    background:
-        linear-gradient(135deg,#ead9e4,#f6e9ed,#e0d8eb);
+.quote .mark{
+  font-size:70px;
+  color:#d5b978;
+  line-height:.5;
 }
 
-.story-card{
-    width:min(900px,92vw);
-    padding:70px;
-
-    background:rgba(255,250,245,.72);
-
-    border:1px solid rgba(151,119,143,.25);
-
-    box-shadow:0 25px 80px rgba(101,76,94,.15);
-
-    text-align:center;
-    backdrop-filter:blur(5px);
-
-    position:relative;
+.quote p{
+  font-family:'Parisienne',cursive;
+  font-size:42px;
+  color:#805f75;
+  margin:25px auto;
+  max-width:700px;
 }
 
-.story-card h2{
-    font-family:"Playfair Display",serif;
-    font-weight:400;
-    color:#654c5e;
-    font-size:clamp(40px,7vw,65px);
-    margin:20px 0 30px;
+/* ---------- ROLES ---------- */
+
+.roles{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  margin-top:35px;
 }
 
-.story-card p{
-    color:#695866;
-    font-size:21px;
-    line-height:1.75;
+.role{
+  padding:25px 15px;
+  border:1px solid #dec9d5;
+  background:rgba(255,255,255,.55);
+  text-align:center;
+  transition:.4s;
 }
 
-.highlight{
-    color:#bd819b;
+.role:hover{
+  transform:translateY(-8px);
+  box-shadow:0 15px 30px rgba(100,70,90,.1);
 }
 
-.free-time{
-    display:inline-block;
-
-    margin-top:35px;
-
-    padding:15px 25px;
-
-    border:1px dashed #bd819b;
-
-    color:#806c79;
-
-    font-family:monospace;
-
-    background:#fffaf5;
+.role .icon{
+  font-size:28px;
+  margin-bottom:8px;
 }
 
-
-/* ---------- READER CHAPTER ---------- */
-
-.reader{
-    margin-top:35px;
-    font-family:"Parisienne",cursive;
-    font-size:43px;
-    color:#bd819b;
+.role h4{
+  font-family:'Playfair Display',serif;
+  color:#72556a;
+  font-size:18px;
 }
 
-.one-more{
-    margin-top:35px;
-    color:#c29f58;
-    font-style:italic;
-    font-size:24px;
+.role p{
+  font-size:16px;
+  margin-top:6px;
 }
 
+/* ---------- 404 ---------- */
+
+.notfound{
+  margin:35px auto;
+  max-width:600px;
+  padding:25px;
+  border:1px dashed #bd91aa;
+  background:#f5e8ef;
+  text-align:center;
+}
+
+.notfound strong{
+  display:block;
+  font-family:'Playfair Display',serif;
+  font-size:28px;
+  color:#895f79;
+  margin-bottom:7px;
+}
 
 /* ---------- SECRET ---------- */
 
-.secret{
-    min-height:100vh;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    padding:60px 20px;
-
-    background:#654c5e;
-
-    color:#fffaf5;
-
-    position:relative;
+.secret-area{
+  text-align:center;
 }
 
-.secret-content{
-    max-width:700px;
+.secret-btn{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  border:1px solid #d5b978;
+  background:#fffaf7;
+  color:#c4a75e;
+  font-size:30px;
+  cursor:pointer;
+  box-shadow:0 0 0 8px rgba(213,185,120,.08);
+  animation:pulse 2s infinite;
+  transition:.4s;
 }
 
-.secret-symbol{
-    width:85px;
-    height:85px;
-
-    margin:auto;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-
-    border:1px solid #d5b978;
-
-    color:#d5b978;
-
-    font-size:30px;
-
-    cursor:pointer;
-
-    transition:.5s;
-
-    animation:glow 2s infinite;
+.secret-btn:hover{
+  transform:rotate(20deg) scale(1.1);
 }
 
-.secret-symbol:hover{
-    transform:rotate(90deg) scale(1.1);
-    background:rgba(213,185,120,.1);
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 8px rgba(213,185,120,.08)}
+  50%{box-shadow:0 0 0 18px rgba(213,185,120,.02)}
 }
 
-@keyframes glow{
-    50%{
-        box-shadow:0 0 35px rgba(213,185,120,.25);
-    }
+.secret-message{
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transition:1s ease;
 }
 
-.secret h2{
-    font-family:"Playfair Display",serif;
-    font-size:50px;
-    font-weight:400;
-    margin:30px 0 20px;
+.secret-message.show{
+  max-height:400px;
+  opacity:1;
+  margin-top:30px;
 }
-
-.secret-intro{
-    font-size:20px;
-    color:#dbcfd8;
-}
-
-.hidden{
-    max-height:0;
-    overflow:hidden;
-    opacity:0;
-
-    transition:1.2s ease;
-}
-
-.hidden.show{
-    max-height:500px;
-    opacity:1;
-    margin-top:40px;
-}
-
-.hidden .special{
-    font-family:"Parisienne",cursive;
-    color:#e2c985;
-    font-size:42px;
-    margin-bottom:20px;
-}
-
-.hidden p{
-    color:#e0d6de;
-    font-size:20px;
-    line-height:1.7;
-}
-
 
 /* ---------- BIRTHDAY ---------- */
 
 .birthday{
-    min-height:100vh;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    padding:40px;
-
-    position:relative;
-
-    overflow:hidden;
-
-    background:
-        radial-gradient(circle at center,#f9edf3,#ead7e3 50%,#d3c5dc);
-}
-
-.birthday-content{
-    position:relative;
-    z-index:5;
-}
-
-.birthday-small{
-    letter-spacing:6px;
-    font-size:13px;
-    color:#987a8d;
-}
-
-.birthday h1{
-    font-family:"Playfair Display",serif;
-    font-weight:400;
-    font-size:clamp(50px,9vw,100px);
-    color:#654c5e;
-    margin:25px 0 0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 50% 35%,#fff8fb 0%,#ead6e1 40%,#c6a9be 100%);
+  overflow:hidden;
+  text-align:center;
 }
 
 .birthday h2{
-    font-family:"Parisienne",cursive;
-    font-weight:400;
-    font-size:clamp(55px,9vw,90px);
-    color:#bd819b;
+  font-size:clamp(40px,8vw,80px);
+  font-family:'Parisienne',cursive;
+  margin-bottom:15px;
 }
 
-.birthday p{
-    margin-top:25px;
-    color:#806c79;
-    font-size:21px;
+.birthday-sub{
+  font-size:23px;
+  color:#75576b;
 }
 
+.cake{
+  font-size:85px;
+  margin:30px 0;
+  animation:cakeFloat 3s infinite ease-in-out;
+}
 
-/* ---------- FIREWORKS ---------- */
+@keyframes cakeFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+
+.fireworks{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
 
 .firework{
-    position:absolute;
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:#d5b978;
-
-    animation:explode 2.5s infinite;
+  position:absolute;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  animation:explode 2.5s infinite ease-out;
+  opacity:0;
 }
 
-.firework:nth-child(1){
-    left:12%;
-    top:25%;
-}
-
-.firework:nth-child(2){
-    right:15%;
-    top:20%;
-    animation-delay:.7s;
-}
-
-.firework:nth-child(3){
-    left:22%;
-    bottom:20%;
-    animation-delay:1.2s;
-}
-
-.firework:nth-child(4){
-    right:25%;
-    bottom:25%;
-    animation-delay:1.8s;
-}
+.firework:nth-child(1){left:15%;top:25%;animation-delay:.2s}
+.firework:nth-child(2){left:80%;top:22%;animation-delay:1s}
+.firework:nth-child(3){left:25%;top:65%;animation-delay:1.6s}
+.firework:nth-child(4){left:75%;top:65%;animation-delay:.7s}
+.firework:nth-child(5){left:50%;top:18%;animation-delay:2s}
 
 @keyframes explode{
+  0%{
+    opacity:1;
+    box-shadow:
+      0 0 #d5b978,
+      0 0 #c993a8,
+      0 0 #b7a8c9,
+      0 0 #e5c98b,
+      0 0 #d99ab4,
+      0 0 #a88dbb;
+  }
+  70%{
+    opacity:1;
+    box-shadow:
+      0 -100px #d5b978,
+      70px -70px #c993a8,
+      100px 0 #b7a8c9,
+      70px 70px #e5c98b,
+      0 100px #d99ab4,
+      -70px 70px #a88dbb,
+      -100px 0 #d5b978,
+      -70px -70px #c993a8;
+  }
+  100%{
+    opacity:0;
+    box-shadow:
+      0 -130px transparent,
+      90px -90px transparent,
+      130px 0 transparent,
+      90px 90px transparent,
+      0 130px transparent,
+      -90px 90px transparent,
+      -130px 0 transparent,
+      -90px -90px transparent;
+  }
+}
 
-    0%,100%{
-        opacity:0;
-        transform:scale(.3);
-        box-shadow:none;
+/* ---------- LETTER ---------- */
+
+.letter{
+  background:#fff9f5;
+  padding:50px clamp(25px,8vw,80px);
+  border-left:4px solid #d5b978;
+  box-shadow:0 20px 60px rgba(95,65,85,.1);
+}
+
+.letter p{
+  font-size:21px;
+  line-height:1.9;
+  margin-bottom:18px;
+}
+
+.signature{
+  font-family:'Parisienne',cursive;
+  color:#8a607b;
+  font-size:42px;
+  margin-top:30px;
+}
+
+/* ---------- FINAL ---------- */
+
+.final{
+  min-height:100vh;
+  background:linear-gradient(135deg,#765970,#b18aa2,#d8c1d0);
+  color:white;
+  text-align:center;
+}
+
+.final h2{
+  color:white;
+  font-family:'Parisienne',cursive;
+  font-size:clamp(55px,11vw,110px);
+}
+
+.final .chapter-number{
+  letter-spacing:8px;
+  font-size:14px;
+  margin-bottom:20px;
+}
+
+.final p{
+  font-size:23px;
+  line-height:1.8;
+  max-width:650px;
+}
+
+.final .gold{
+  color:#f0d58e;
+}
+
+/* ---------- REVEAL ---------- */
+
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:600px){
+
+  .page{
+    padding:70px 5%;
+  }
+
+  .paper{
+    padding:55px 20px;
+  }
+
+  .story{
+    font-size:19px;
+  }
+
+  .roles{
+    grid-template-columns:1fr;
+  }
+
+  .quote p{
+    font-size:34px;
+  }
+
+  .book{
+    height:430px;
+  }
+
+  .cover h3{
+    font-size:50px;
+  }
+
+  .birthday-sub{
+    font-size:19px;
+  }
+}
+
+/* If JS doesn't work, the actual website remains visible */
+.no-js .reveal{
+  opacity:1;
+  transform:none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div class="intro" id="intro">
+  <div class="intro-content">
+    <div class="small-title">A story written for one special girl</div>
+    <h1>Thehreem</h1>
+    <p>Every girl deserves her own novel.</p>
+    <button class="open-btn" onclick="openStory()">OPEN THE BOOK</button>
+  </div>
+</div>
+
+<!-- FLOATING PARTICLES -->
+<div class="particle" style="left:8%;top:25%;animation-delay:0s"></div>
+<div class="particle" style="left:18%;top:70%;animation-delay:2s"></div>
+<div class="particle" style="left:35%;top:40%;animation-delay:1s"></div>
+<div class="particle" style="left:55%;top:75%;animation-delay:3s"></div>
+<div class="particle" style="left:72%;top:30%;animation-delay:1.5s"></div>
+<div class="particle" style="left:88%;top:65%;animation-delay:4s"></div>
+
+<main>
+
+<!-- HERO -->
+<section class="page hero" id="start">
+  <div class="eyebrow">A Birthday Novel</div>
+  <h1>The Story of<br>Thehreem</h1>
+  <div class="subtitle">A little book about a very special girl</div>
+  <div class="scroll">SCROLL TO BEGIN ↓</div>
+</section>
+
+
+<!-- CHAPTER 1 -->
+<section class="page">
+  <div class="paper reveal">
+
+    <div class="chapter">Chapter I</div>
+
+    <h2>The Girl Who Came Next</h2>
+
+    <p class="story dropcap">
+      Once upon a time, in a family already full of stories,
+      a little girl arrived after her eldest brother.
+      Nobody knew then how many chapters she would eventually carry
+      inside her.
+    </p>
+
+    <br>
+
+    <p class="story">
+      Her name was <b>Thehreem.</b>
+      And although she was only one person,
+      life would slowly give her a hundred different roles.
+    </p>
+
+    <div class="quote">
+      <div class="mark">“</div>
+      <p>
+        Some people enter a family.<br>
+        Some people become part of its story.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- BOOK -->
+<section class="page">
+  <div class="paper reveal">
+
+    <div class="chapter">The Book Within The Book</div>
+
+    <h2>Then She Opens a Book...</h2>
+
+    <div class="book-wrap">
+
+      <div class="book" id="book">
+
+        <div class="book-page">
+          <h4>Chapter Unknown</h4>
+          <p>
+            She opened a book because sometimes
+            real life is simply too loud.
+          </p>
+          <br>
+          <p>
+            And somewhere between the first page
+            and the last...
+          </p>
+          <br>
+          <p><i>she forgot about the world for a while.</i></p>
+        </div>
+
+        <div class="cover">
+          <div class="cover-border"></div>
+          <small>THE NOVEL OF</small>
+          <h3>Thehreem</h3>
+          <span>✦</span>
+          <small style="margin-top:20px">A STORY WORTH READING</small>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div style="text-align:center">
+      <button class="open-btn" style="background:#765970;color:white"
+              onclick="document.getElementById('book').classList.toggle('open')">
+        TURN THE PAGE
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CHAPTER 2 -->
+<section class="page">
+  <div class="paper reveal">
+
+    <div class="chapter">Chapter II</div>
+
+    <h2>The Girl With No Free Time</h2>
+
+    <p class="story dropcap">
+      Thehreem lives in a joint family,
+      where there is always something to do,
+      someone to help,
+      something to cook,
+      and somehow...
+      another task waiting right after the last one.
+    </p>
+
+    <div class="notfound">
+      <strong>FREE TIME: 404 NOT FOUND</strong>
+      Apparently, this chapter has been permanently deleted.
+    </div>
+
+    <p class="story">
+      Two minutes of peace?
+      Rare treasure.
+      A quiet moment?
+      Almost mythical.
+      And yet, she keeps going.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- CHAPTER 3 -->
+<section class="page">
+  <div class="paper reveal">
+
+    <div class="chapter">Chapter III</div>
+
+    <h2>All Her Little Roles</h2>
+
+    <p class="story">
+      The beautiful thing about Thehreem's story
+      is that she is never just one thing.
+    </p>
+
+    <div class="roles">
+
+      <div class="role">
+        <div class="icon">🍳</div>
+        <h4>The Cook</h4>
+        <p>Turning ordinary ingredients into something everyone enjoys.</p>
+      </div>
+
+      <div class="role">
+        <div class="icon">🏡</div>
+        <h4>The Helper</h4>
+        <p>Always there when the family needs another pair of hands.</p>
+      </div>
+
+      <div class="role">
+        <div class="icon">🤍</div>
+        <h4>The Daughter</h4>
+        <p>Carrying love in ways she doesn't always say out loud.</p>
+      </div>
+
+      <div class="role">
+        <div class="icon">📖</div>
+        <h4>The Reader</h4>
+        <p>Escaping into fictional worlds whenever she gets the chance.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CHAPTER 4 -->
+<section class="page">
+  <div class="paper reveal">
+
+    <div class="chapter">Chapter IV</div>
+
+    <h2>One More Chapter...</h2>
+
+    <p class="story">
+      Of course, every reader knows the lie:
+    </p>
+
+    <div class="quote">
+      <p>“Just one more chapter.”</p>
+    </div>
+
+    <p class="story">
+      One chapter becomes two.
+      Two become five.
+      And suddenly it's much later than it should be.
+    </p>
+
+    <br>
+
+    <p class="story">
+      But maybe that is the magic of books.
+      They give you somewhere else to go,
+      even when you only have a few minutes for yourself.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- SECRET -->
+<section class="page">
+  <div class="paper reveal secret-area">
+
+    <div class="chapter">A Secret Chapter</div>
+
+    <h2>There Is Something Hidden Here...</h2>
+
+    <p class="story">
+      Every good novel has a secret.
+      The kind you only discover if you actually look for it.
+    </p>
+
+    <br>
+
+    <button class="secret-btn" onclick="revealSecret()">✦</button>
+
+    <div class="secret-message" id="secret">
+
+      <div class="quote">
+        <div class="mark">“</div>
+
+        <p>
+          If your life were a novel,
+          I would never want your story
+          to end on a sad page.
+        </p>
+
+        <p style="font-family:'Cormorant Garamond';font-size:21px">
+          So here is your reminder:
+          you deserve beautiful chapters too.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- BIRTHDAY -->
+<section class="page birthday">
+
+  <div class="fireworks">
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+  </div>
+
+  <div style="position:relative;z-index:3">
+
+    <div class="chapter" style="color:#856478">
+      The Most Important Chapter
+    </div>
+
+    <h2>Happy Birthday,<br>Thehreem!</h2>
+
+    <div class="cake">🎂</div>
+
+    <p class="birthday-sub">
+      May this new chapter be softer,<br>
+      brighter, happier and full of beautiful surprises.
+    </p>
+
+    <br>
+
+    <p style="font-size:19px;color:#76576b">
+      And may you finally get more than<br>
+      <b>two minutes of free time.</b> 😭
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- LETTER -->
+<section class="page">
+  <div class="paper reveal">
+
+    <div class="chapter">A Letter From The Author</div>
+
+    <h2>Dear Thehreem,</h2>
+
+    <div class="letter">
+
+      <p>
+        If life were really a book,
+        I think your chapter would be one of those
+        that people keep coming back to.
+      </p>
+
+      <p>
+        Not because everything is perfect,
+        but because there is something warm
+        and real about the girl inside these pages.
+      </p>
+
+      <p>
+        You spend so much time doing things for everyone else.
+        Cooking, helping, being there,
+        carrying little responsibilities that sometimes
+        nobody even notices.
+      </p>
+
+      <p>
+        So on your birthday,
+        I hope this little novel reminds you of something important:
+        <b>your story matters too.</b>
+      </p>
+
+      <p>
+        I hope this next chapter brings you
+        laughter that comes easily,
+        peaceful moments,
+        books you cannot put down,
+        and memories that feel like your favourite pages.
+      </p>
+
+      <div class="signature">
+        With love ✦
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FINAL -->
+<section class="page final">
+
+  <div>
+
+    <div class="chapter-number">
+      THE FINAL PAGE
+    </div>
+
+    <h2>The Story<br>Continues...</h2>
+
+    <p>
+      This is not the ending.
+      It is simply the page where
+      <span class="gold">Chapter 18</span>
+      begins.
+    </p>
+
+    <br>
+
+    <p style="font-size:18px;letter-spacing:3px">
+      THEHREEM — CHAPTER 18 ✦
+    </p>
+
+    <br><br>
+
+    <p style="font-family:'Parisienne';font-size:42px">
+      Happy Birthday, book girl. 🤍
+    </p>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<script>
+
+/* INTRO */
+function openStory(){
+  document.getElementById("intro").classList.add("hide");
+
+  setTimeout(function(){
+    document.getElementById("start").scrollIntoView({
+      behavior:"smooth"
+    });
+  },700);
+}
+
+
+/* SECRET CHAPTER */
+function revealSecret(){
+  document.getElementById("secret").classList.toggle("show");
+}
+
+
+/* SCROLL ANIMATIONS */
+function revealOnScroll(){
+
+  var items=document.querySelectorAll(".reveal");
+
+  for(var i=0;i<items.length;i++){
+
+    var rect=items[i].getBoundingClientRect();
+
+    if(rect.top < window.innerHeight - 80){
+      items[i].classList.add("visible");
+    }
+
+  }
+}
+
+window.addEventListener("scroll",revealOnScroll);
+window.addEventListener("load",function(){
+
+  /* Make sure the page isn't blank if animation doesn't trigger */
+  setTimeout(revealOnScroll,300);
+
+});
+
+
+/* EXTRA FLOATING SPARKLES */
+setInterval(function(){
+
+  var s=document.createElement("div");
+
+  s.className="particle";
+
+  s.style.left=Math.random()*100+"%";
+  s.style.top="100%";
+  s.style.animationDuration=(5+Math.random()*5)+"s";
+
+  document.body.appendChild(s);
+
+  setTimeout(function(){
+    s.remove();
+  },10000);
+
+},900);
+
+</script>
+
+</body>
+</html>
 ```
